@@ -1,5 +1,6 @@
 const express = require("express");
 
+
 // const {sequelize} = require("sequelize");
 const sequelize = require("sequelize");
 require("sequelize/lib/model");
@@ -35,7 +36,7 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 // Middleware function for logging
 function logging(req, res, next) {
   console.log("Given local middleware is calling");
-  next();
+next();
 }
 
 // Middleware function for '/things' route
@@ -54,7 +55,7 @@ app.use("/second", (req, res, next) => {
 // Define routes
 app.get("/", (req, res) => {
   res.json({
-    aman: "",
+    message: "",
   });
 });
 

@@ -1,10 +1,12 @@
+// 49.36.239.60/32
+
 const randomNumber = require("../utils/const");
 
-const Category = require("../models/category");
+const Category = require("../models/new_db_models/main_category");
 
-const SubCategories = require("../models/sub_category");
+const SubCategories = require("../models/new_db_models/sub_category");
 
-const Images = require("../models/image");
+const Images = require("../models/new_db_models/image");
 
 const cache = require("node-cache");
 const { json } = require("sequelize");
@@ -67,6 +69,7 @@ async function addMainCategory(req, res) {
 async function addSubCategory(
   // body,
   // subCategories, mainCategoryId, files,
+
   { body, subCategories, mainCategoryId, files }
 ) {
   try {
@@ -105,7 +108,6 @@ async function addSubCategory(
     await Images.bulkCreate(reqFileList)
       .then((value) => {
         console.log(value);
-        
       })
       .catch((e) => {
         console.log(e);

@@ -1,11 +1,14 @@
 const randomNumber = require("../utils/const");
 
-const Product = require("../models/products");
+const Product = require("../models/new_db_models/product");
 
-const Images = require("../models/image");
+const Images = require("../models/new_db_models/image");
 
 const cache = require("node-cache");
 
+/* ********************/
+// ADD PRODUCT
+/* ********************/
 async function addProduct(req, res) {
   console.log(randomNumber.generateId());
   const productName = req.body.name;
@@ -54,6 +57,9 @@ async function addProduct(req, res) {
   }
 }
 
+/* ********************/
+//DELETE PRODUCT
+/* ********************/
 async function deleteProduct(req, res) {
   const productId = req.productId;
 
@@ -74,7 +80,11 @@ async function deleteProduct(req, res) {
   }
 }
 
-async function updateProducct(req, res) {
+/* ********************/
+// UPDATE PRODUCT
+/* ********************/
+
+async function updateProduct(req, res) {
   const productId = req.productId;
 
   const product = Product.update(
@@ -94,6 +104,10 @@ async function updateProducct(req, res) {
   }
 }
 
+
+/* ********************/
+//
+/* ********************/
 async function getProduct(req, res) {
   const productId = req.productId;
 

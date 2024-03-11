@@ -9,7 +9,7 @@ const setUploadPath = require("../middleware/upload_middleware");
 
 const routes = express.Router();
 
-const { signUp, login } = require("../controller/usercontroller");
+const {signUp, login} = require("../controller/usercontroller");
 
 routes.post(
   "/signUp",
