@@ -11,6 +11,10 @@ const cache = require("node-cache");
 /* ********************/
 async function addProduct(req, res) {
   console.log(randomNumber.generateId());
+
+  
+
+  
   const productName = req.body.name;
   const productId = randomNumber.generateId();
 
@@ -22,7 +26,7 @@ async function addProduct(req, res) {
 
   let list = req.files;
 
-  const product = await Product.findOne({ where: { name: productName } });
+  const product = await Product.findOne({ name: productName });
   if (!product) {
     let reqFileList = [];
     for (const tempObject of list) {

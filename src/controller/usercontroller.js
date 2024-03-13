@@ -84,9 +84,7 @@ async function login(req, res) {
     const password = req.body.password;
     const email = req.body.email;
     const userData = await User.findOne({
-      where: {
-        email: email,
-      },
+      email: email,
     });
     if (userData) {
       console.log(userData.toJSON);
@@ -112,6 +110,7 @@ async function login(req, res) {
         }
       );
       res.send({
+        message: "Login Sucessfully",
         userData: userData,
         token: token,
       });

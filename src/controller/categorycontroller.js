@@ -25,7 +25,7 @@ async function addMainCategory(req, res) {
   // const firstObject  = imageFile[0];
 
   try {
-    const category = await Category.findOne({ where: { name: categoryName } });
+    const category = await Category.findOne({ name: categoryName });
     if (!category) {
       const userDetials = await Category.create({
         id: categoryId,
@@ -66,12 +66,7 @@ async function addMainCategory(req, res) {
 // Add Sub category
 /* ********************/
 
-async function addSubCategory(
-  // body,
-  // subCategories, mainCategoryId, files,
-
-  { body, subCategories, mainCategoryId, files }
-) {
+async function addSubCategory({ body, subCategories, mainCategoryId, files }) {
   try {
     const ImageFiles = files;
     let reqFileList = [];
@@ -84,13 +79,13 @@ async function addSubCategory(
       const subCategoriesId = randomNumber.generateId();
 
       const category = await SubCategories.findOne({
-        where: { name: item.name },
+        name: item.name,
       });
       if (!category) {
         const userDetials = await SubCategories.create({
           id: subCategoriesId,
           name: item.name,
-          mainCategoryId: mainCategoryId,
+          main_category_id: mainCategoryId,
           description: item.description,
           isDeleted: 0,
         });
@@ -105,13 +100,15 @@ async function addSubCategory(
       }
     }
 
-    await Images.bulkCreate(reqFileList)
-      .then((value) => {
-        console.log(value);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    await Images.insertMany(reqFileList);
+
+    // await Images.bulkCreate(reqFileList)
+    //   .then((value) => {
+    //     console.log(value);
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
   } catch (e) {
     console.log(e);
   }
@@ -124,9 +121,7 @@ async function deleteCategory(req, res) {
     const product = Category.update(
       { isDeleted: 1 },
       {
-        where: {
-          id: categoryId,
-        },
+        id: categoryId,
       }
     );
 

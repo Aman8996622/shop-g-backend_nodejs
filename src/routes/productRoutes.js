@@ -15,7 +15,6 @@ routes.post(
   "/products",
   verifyToken.verifyToken,
   setUploadPath.setUploadPath("./public/images"),
-  upload.array("productImage"),
   addProduct
 );
 

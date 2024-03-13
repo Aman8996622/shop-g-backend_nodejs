@@ -4,8 +4,8 @@ const { Schema } = mongoose;
 const yourModelSchema = new Schema({
   
   id: {
-    type: String,
-    default: "",
+    type: Number,
+    default: 0,
   },
   product_id: {
     type: Number,
@@ -15,7 +15,7 @@ const yourModelSchema = new Schema({
     type: String,
     default: "",
   },
-  main_category_id: {
+main_category_id: {
     type: Number,
     default: 0,
   },
@@ -33,6 +33,6 @@ const yourModelSchema = new Schema({
   },
 });
 
-const SubCategory = mongoose.model("YourModel", yourModelSchema);
+const SubCategory = mongoose.model("sub_categories", yourModelSchema);
 
 module.exports = SubCategory;

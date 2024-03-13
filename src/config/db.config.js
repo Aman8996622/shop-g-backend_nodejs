@@ -32,7 +32,7 @@ module.exports = async () => {
     const dbUrl =
       "mongodb+srv://flaman241:wiwPgSyHdaSHsg9a@cluster0.h5bhxum.mongodb.net/shopzdb?retryWrites=true&w=majority&appName=Cluster0";
     await connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
-    console.log("mongodb database connected successfully");
+    console.log("give db is connected");
   } catch (error) {
     console.log("database not connected", error);
   }

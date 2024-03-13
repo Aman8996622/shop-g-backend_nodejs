@@ -40,6 +40,6 @@ yourSchema.pre("save", function (next) {
   next();
 });
 
-const Category = mongoose.model("main_category", yourSchema);
+const Category = mongoose.model("main_categories", yourSchema);
 
  module.exports =  Category

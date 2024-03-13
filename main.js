@@ -1,9 +1,8 @@
 const express = require("express");
 
-
 // const {sequelize} = require("sequelize");
-const sequelize = require("sequelize");
-require("sequelize/lib/model");
+
+const dbConnection = require("./src/config/db.config");
 
 let path = require("path");
 
@@ -14,11 +13,12 @@ const app = express();
 
 app.use(express.json());
 
+(async function () {
+  await dbConnection();
+})();
 // Import your routes and other modules
 // const authRoute = require('./src/routes');
 const { authRoutes, productRoutes, categoryRoutes } = require("./src/routes");
-const { getAssociationForAlias } = require("sequelize/lib/associations/mixin");
-require("./src/config/db.config");
 require("./src/controller/usercontroller");
 
 // Body parser middleware
@@ -36,7 +36,7 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 // Middleware function for logging
 function logging(req, res, next) {
   console.log("Given local middleware is calling");
-next();
+  next();
 }
 
 // Middleware function for '/things' route

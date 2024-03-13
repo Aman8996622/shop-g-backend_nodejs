@@ -3,8 +3,8 @@ const { Schema } = mongoose;
 
 const usersSchema = new Schema({
   id: {
-    type: String,
-    default: mongoose.Types.ObjectId,
+    type: Number,
+    default: 0,
   },
   name: {
     type: String,
