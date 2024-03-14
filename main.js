@@ -11,6 +11,10 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+const name = "Alice";
+const age = 30;
+
+
 app.use(express.json());
 
 (async function () {

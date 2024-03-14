@@ -40,9 +40,15 @@ async function addMainCategory(req, res) {
         message: "Given category is add successfully",
       });
 
+      const name = "Alice";
+      const age = 30;
+      console.log(`My name is ${name} and I am ${age} years old.`);
+
+      const imageUrl = `http://localhost:4000/public/images/${imageFile[0].filename}`;
+
       await Images.create({
         id: categoryId,
-        image_url: `http://localhost:4000/public/images/${imageFile[0].filename}`,
+        images_url: imageUrl,
       });
 
       // await addSubCategory(req.body, subCategories, categoryId, req.files.subCategoryImage);
@@ -68,7 +74,9 @@ async function addMainCategory(req, res) {
 
 async function addSubCategory({ body, subCategories, mainCategoryId, files }) {
   try {
+    // this list holds the image list
     const ImageFiles = files;
+    // this list holds the reqFileList
     let reqFileList = [];
 
     const listCategories = subCategories.category;
@@ -89,26 +97,17 @@ async function addSubCategory({ body, subCategories, mainCategoryId, files }) {
           description: item.description,
           isDeleted: 0,
         });
-
-        if (index < reqFileList.length)
+        const imageUrl = `http://localhost:4000/public/images/${ImageFiles[index].filename}`;
+        if (index < ImageFiles.length)
           reqFileList.push({
             id: subCategoriesId,
-            image_url: `http://localhost:4000/public/images/${ImageFiles[index].filename}`,
+            images_url: imageUrl,
           });
       } else {
         console.log("given sub Categories is present in data");
       }
     }
-
     await Images.insertMany(reqFileList);
-
-    // await Images.bulkCreate(reqFileList)
-    //   .then((value) => {
-    //     console.log(value);
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
-    //   });
   } catch (e) {
     console.log(e);
   }

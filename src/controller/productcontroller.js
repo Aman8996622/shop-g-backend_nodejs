@@ -12,9 +12,6 @@ const cache = require("node-cache");
 async function addProduct(req, res) {
   console.log(randomNumber.generateId());
 
-  
-
-  
   const productName = req.body.name;
   const productId = randomNumber.generateId();
 
@@ -23,6 +20,8 @@ async function addProduct(req, res) {
   const rating = req.body.rating;
   const brand = req.body.brand;
   const mrp = req.body.price;
+ const subCategoriesId = req.body.sub_category_id;
+ const main_category_id = req.body.main_category_id;
 
   let list = req.files;
 
@@ -52,11 +51,8 @@ async function addProduct(req, res) {
       message: "Given product is add successfully",
     });
 
-    await Images.bulkCreate(reqFileList)
-      .then((value) => {})
-      .catch((e) => {
-        console.log(e);
-      });
+    await Images.insertMany(reqFileList)
+      
   } else {
   }
 }
@@ -108,7 +104,6 @@ async function updateProduct(req, res) {
   }
 }
 
-
 /* ********************/
 //
 /* ********************/
@@ -151,6 +146,11 @@ async function getCategory(req, res) {
   } else {
   }
 }
+
+
+
+
+
 
 module.exports = {
   addProduct,

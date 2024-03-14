@@ -9,7 +9,7 @@ const yourModelSchema = new Schema({
   },
   name: {
     type: String,
-    default: "",
+    default: "", 
   },
   description: {
     type: String,

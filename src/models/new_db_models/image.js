@@ -11,9 +11,8 @@ const yourSchema = new Schema({
   },
   images_url: {
     type: String,
-    default: 0,
+    default: "",
   },
-
   created_at: {
     type: Date,
     default: () => Date.now(),
