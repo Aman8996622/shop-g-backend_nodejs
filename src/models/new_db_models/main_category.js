@@ -1,10 +1,8 @@
-
-const mongoose  = require("mongoose");
+const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
 const yourSchema = new Schema({
-  
   id: {
     type: Number,
     default: 0,
@@ -42,4 +40,4 @@ yourSchema.pre("save", function (next) {
 
 const Category = mongoose.model("main_categories", yourSchema);
 
- module.exports =  Category
+module.exports = Category;

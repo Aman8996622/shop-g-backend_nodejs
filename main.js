@@ -14,7 +14,6 @@ const app = express();
 const name = "Alice";
 const age = 30;
 
-
 app.use(express.json());
 
 (async function () {
@@ -22,7 +21,12 @@ app.use(express.json());
 })();
 // Import your routes and other modules
 // const authRoute = require('./src/routes');
-const { authRoutes, productRoutes, categoryRoutes } = require("./src/routes");
+const {
+  authRoutes,
+  productRoutes,
+  categoryRoutes,
+  cartRoutes,
+} = require("./src/routes");
 require("./src/controller/usercontroller");
 
 // Body parser middleware

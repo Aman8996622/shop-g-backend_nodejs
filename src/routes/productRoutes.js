@@ -12,9 +12,10 @@ const {
 const routes = express.Router();
 
 routes.post(
-  "/products",
+  "/add_product",
   verifyToken.verifyToken,
   setUploadPath.setUploadPath("./public/images"),
+  upload.array("productImage"),
   addProduct
 );
 

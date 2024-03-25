@@ -40,10 +40,7 @@ async function addMainCategory(req, res) {
         message: "Given category is add successfully",
       });
 
-      const name = "Alice";
-      const age = 30;
-      console.log(`My name is ${name} and I am ${age} years old.`);
-
+      
       const imageUrl = `http://localhost:4000/public/images/${imageFile[0].filename}`;
 
       await Images.create({

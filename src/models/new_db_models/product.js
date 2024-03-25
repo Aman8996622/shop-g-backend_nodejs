@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 const { Schema } = mongoose;
 
 const yourModelSchema = new Schema({
@@ -8,11 +9,13 @@ const yourModelSchema = new Schema({
     default: "",
   },
   name: {
-    type: String,
+    type: String, 
+    unique: true,
     default: "", 
   },
   description: {
     type: String,
+    unique:true,
     default: "",
   },
   mrp: {

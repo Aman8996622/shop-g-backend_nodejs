@@ -20,40 +20,52 @@ async function addProduct(req, res) {
   const rating = req.body.rating;
   const brand = req.body.brand;
   const mrp = req.body.price;
- const subCategoriesId = req.body.sub_category_id;
- const main_category_id = req.body.main_category_id;
+  const subCategoriesId = req.body.sub_category_id;
+  const main_category_id = req.body.main_category_id;
+  const discount = req.body.discount;
 
   let list = req.files;
 
-  const product = await Product.findOne({ name: productName });
-  if (!product) {
-    let reqFileList = [];
-    for (const tempObject of list) {
-      console.log(tempObject);
+  try {
+    const product = await Product.findOne({ name: productName });
+    if (!product) {
+      let reqFileList = [];
+      for (const tempObject of list) {
+        console.log(tempObject);
 
-      reqFileList.push({
+        reqFileList.push({
+          id: productId,
+          image_url: `http://localhost:4000/public/images/${tempObject.filename}`,
+        });
+      }
+      console.log(reqFileList);
+
+      const userDetials = await Product.create({
         id: productId,
-        image_url: `http://localhost:4000/public/images/${tempObject.filename}`,
+        name: productName,
+        categoryName: categoryName,
+        main_category_id: main_category_id,
+        sub_category_id: sub_category_id,
+        description: descrip,
+        mrp: mrp,
+        price: mrp,
+        discount: discount,
+        rating: rating,
+        brandName: brand,
+        isDeleted: 0,
       });
-    }
-    console.log(reqFileList);
 
-    const userDetials = await Product.create({
-      id: productId,
-      name: productName,
-      categoryName: categoryName,
-      price: mrp,
-      rating: rating,
-      brandName: brand,
-      isDeleted: 0,
-    });
-    res.send({
-      message: "Given product is add successfully",
-    });
+      res.send({
+        message: "Given product is add successfully",
+      });
 
-    await Images.insertMany(reqFileList)
+      await Images.insertMany(reqFileList);
+    } else {
+
       
-  } else {
+    }
+  } catch (error) {
+    console.log(error);
   }
 }
 
@@ -146,11 +158,6 @@ async function getCategory(req, res) {
   } else {
   }
 }
-
-
-
-
-
 
 module.exports = {
   addProduct,
